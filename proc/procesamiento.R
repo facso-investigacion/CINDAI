@@ -1,0 +1,172 @@
+#### Procesamiento SEPA-VID ####
+
+# Cargar librerias ----
+if (!require("pacman")) install.packages("pacman")
+library(pacman)
+p_load(tidyverse,
+       readxl,
+       writexl,
+       janitor)
+
+# Cargar datos ----
+proyectos <- read_excel("input/data/proyectos.xlsx") %>% clean_names()
+
+
+# Procesar proyectos ----
+proyectos <- proyectos %>% 
+  # simplificar categorias tipo de proyecto
+  mutate(
+    institucion = recode(institucion,
+                         "Agencia Nacional De Investigación Y Desarrollo (Anid)" = "ANID",
+                         "Ministerio de Educación" = "MinEduc",
+                         "Ministerio De Ciencia, Tecnología, Conocimiento e Innovación" = "MinCiencia",
+                         "Chile" = "GORE Metropolitano de Santiago"
+    ),
+    concurso = recode(concurso,
+                      "Fondecyt_Anid" = "FONDECYT",
+                      "Iniciativa científica Milenio" = "Iniciativa Científica Milenio"
+    ),
+    instrumento = recode(instrumento,
+                         "FONIS-Proyectos I&D" = "FONIS",
+                         "Concurso Anillos en Ciencias Sociales" = "Anillos en Ciencias Sociales",
+                         "Concurso Apoyo a Centros de Excelencia FONDAP" = "Apoyo a Centros de Excelencia FONDAP",
+                         "Nucleo Investigación Cs. Sociales" = "Núcleos Milenio en Ciencias Sociales"
+    ),
+    asociativo = if_else(instrumento %in% c("Anillos en Ciencias Sociales", 
+                                            "Apoyo a Centros de Excelencia FONDAP",
+                                            "Núcleos Milenio en Ciencias Sociales",
+                                            "Iniciativa Científica Milenio"), 1, 0),
+    inv_aplicada = if_else(instrumento %in% c("FONIDE", 
+                                              "FONIS",
+                                              "IDEA",
+                                              "IDEA I+D",
+                                              "Proyectos-Investigación"), 1, 0),
+    adjudicado= if_else(estado_proyecto %in% c("Finalizado",
+                                               "En ejecución"), 1, 0),
+    en_ejecucion= ifelse(estado_proyecto=="En ejecución", 1, 0)
+  ) %>% 
+  # pasar de formato wide a long (un investigador y proyecto por c/fila)
+  pivot_longer(
+    cols = matches("(investigador_\\d+|tipo_investigador\\d+|rut_investigador\\d+)"),
+    names_to = c(".value", "n_investigador"),
+    names_pattern = "(.*?)(\\d+)"
+  ) %>%
+  # eliminar filas sin autor
+  filter(investigador_ != "-") %>% 
+  # seleccionar columnas utiles
+  select(investigador=investigador_, rut_investigador=rut_investigador_, tipo_investigador=tipo_investigador_,
+         codigo_proyecto=codigo, titulo, institucion, concurso, instrumento, asociativo, inv_aplicada, 
+         anio_concurso=ano_concurso, estado_proyecto, adjudicado, en_ejecucion, duracion, fecha_inicio, fecha_termino, 
+         disciplina_principal, area_disciplina_principal, disciplina_exacta_principal)
+
+# Bases ANID ----
+
+anid <- read_excel("input/data/BDH_HISTORICA.xlsx") %>% clean_names()
+milenio <- read_excel("input/data/BDH_PROYECTOS_MILENIO.xlsx") %>% clean_names()
+palabras_claves <- read_excel("input/data/BD_Palabras_claves_Proyectos.xlsx") |> clean_names()
+
+
+# Procesar bases ----
+
+anid_subset <- anid |> select(codigo_proyecto, monto_adjudicado, moneda, palabras_claves) |> 
+  mutate(codigo_proyecto= as.character(codigo_proyecto))
+
+milenio_subset <- milenio |> select(codigo_proyecto, monto_adjudicado=monto_adjudicado_m) |> 
+  mutate(codigo_proyecto= as.character(codigo_proyecto))
+
+palabras_claves_subset <- palabras_claves |> select(codigo_proyecto, palabras_claves) |> 
+  mutate(codigo_proyecto= as.character(codigo_proyecto))
+
+data_anid <- bind_rows(anid_subset, milenio_subset, palabras_claves_subset)
+
+
+proyectos <- merge(proyectos, data_anid, by="codigo_proyecto", all.x=T)
+
+# Estandarizar ruts
+
+proyectos <- proyectos |>
+  mutate(rut_investigador = ifelse(nchar(rut_investigador) == 9, paste0("0", rut_investigador), rut_investigador),
+         rut_investigador = ifelse(nchar(rut_investigador) == 8, paste0("00", rut_investigador), rut_investigador))
+
+# Académicos -----
+
+academicos <- read_excel("input/data/acad.xlsx") |> clean_names()
+retirados <- read_excel("input/data/retirados.xlsx", sheet="Retirados") |> clean_names()
+
+retirados <- retirados |> mutate(rut = rut_norm)
+
+academicos_historico <- bind_rows(academicos, retirados)
+
+academicos_historico <- academicos_historico |> select(reparticion,
+                                                       jerarquia,
+                                                       sexo,
+                                                       paterno,
+                                                       materno,
+                                                       nombres,
+                                                       edad,
+                                                       horas_reales,
+                                                       fech_ratif_jerarquia,
+                                                       fech_term_real,
+                                                       rut) |>
+  filter(reparticion != "-")
+
+academicos_historico <- academicos_historico %>% 
+  mutate(
+    reparticion = case_when(
+      str_detect(str_to_lower(reparticion), "psicología") ~ "Psicología",
+      str_detect(str_to_lower(reparticion), "sociología") ~ "Sociología",
+      str_detect(str_to_lower(reparticion), "antropología") ~ "Antropología",
+      str_detect(str_to_lower(reparticion), "trabajo social") ~ "Trabajo social",
+      str_detect(str_to_lower(reparticion), "educación") ~ "Educación",
+      str_detect(str_to_lower(reparticion), "postgrado") ~ "Postgrado",
+      TRUE ~ NA),
+    categoria = recode(jerarquia,
+                       "Investigador(a) Postdoctoral" = "Investigador(a) Postdoctoral",
+                       "Pendiente" = "Pendiente",
+                       "Prof. Asistente - Categ. Academica Doc." = "Docente",
+                       "Prof. Asociado - Categ. Academica Doc." = "Docente",
+                       "Prof.Titular - Categ. Academica Doc." = "Docente",
+                       "Prof. Asistente - Categ. Academica Ord." = "Ordinaria",
+                       "Prof. Asociado - Categ. Academica Ord." = "Ordinaria",
+                       "Prof.Titular - Categ. Academica Ord." = "Ordinaria",
+                       "Prof. Adjunto" = "Prof. Adjunto"),
+    jerarquia = case_when(
+      str_detect(str_to_lower(jerarquia), "titular") ~ "Titular",
+      str_detect(str_to_lower(jerarquia), "asociado") ~ "Asociado",
+      str_detect(str_to_lower(jerarquia), "asistente") ~ "Asistente",
+      str_detect(str_to_lower(jerarquia), "postdoctoral") ~ "Postdoc",
+      str_detect(str_to_lower(jerarquia), "adjunto") ~ "Adjunto",
+      str_detect(str_to_lower(jerarquia), "instructor") ~ "Instructor",
+      str_detect(str_to_lower(jerarquia), "ayudante") ~ "Ayudante",
+      str_detect(str_to_lower(jerarquia), "evaluado") ~ "No evaluado",
+    ),
+    # fech_ing_u = year(fech_ing_u),
+    # ingreso_reciente = case_when(
+    #   fech_ing_u <= 2014 ~ "Ingreso previo a 2015",
+    #   fech_ing_u > 2014 & fech_ing_u <= 2020 ~ "Ingreso 2015-2020",
+    #   fech_ing_u > 2020  ~ "Ingreso 2020-2025"
+    # ),
+    edad_tramos = case_when(
+      edad < 40 ~ "Menores de 40",
+      edad >= 40 & edad < 50 ~ "40-49 años",
+      edad >= 50 & edad < 60 ~ "50-59 años",
+      edad >= 60 & edad < 70 ~ "60-69 años",
+      edad >= 70 & edad < 80 ~ "70-79 años",
+      edad >= 80 ~ "Mayores de 80",
+    ),
+    retiro = year(fech_term_real),
+    nombre_completo = paste(nombres, paterno, materno),
+    nombre_completo = gsub("\\.", " ", nombre_completo), # Reemplazar puntos por espacio
+    nombre_completo = gsub("\\_", " ", nombre_completo), # Reemplazar guion bajo por espacio
+    nombre_completo = gsub("\\-", " ", nombre_completo), # Reemplazar guion por espacio
+  ) %>% 
+  select(rut_investigador=rut, nombre_completo, sexo, 
+         reparticion, horas_reales, jerarquia, categoria, edad_tramos, retiro)
+
+# Merge
+
+proyectos_merge <- merge(proyectos, academicos_historico, by="rut_investigador")
+
+proyectos_merge <- proyectos_merge |> select(-investigador)
+
+save(proyectos_merge, file="output/proyectos_proc.rdata")

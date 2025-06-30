@@ -163,20 +163,12 @@ El repositorio de las bases debe incluir documentación clara sobre la construcc
 
 ## Cronograma
 
-+----------------------------------------+-------+--------+------------+---------+-----------+-----------+
-| Actividad                              | Julio | Agosto | Septiembre | Octubre | Noviembre | Diciembre |
-+========================================+=======+========+============+=========+===========+===========+
-| Acuerdo plan de trabajo                | X     |        |            |         |           |           |
-+----------------------------------------+-------+--------+------------+---------+-----------+-----------+
-| Consolidación base de datos principal  | X     | X      |            |         |           |           |
-+----------------------------------------+-------+--------+------------+---------+-----------+-----------+
-| Consolidación base de datos auxiliares |       | X      |            |         |           |           |
-+----------------------------------------+-------+--------+------------+---------+-----------+-----------+
-| Construcción del dashboard             |       |        | X          | X       |           |           |
-+----------------------------------------+-------+--------+------------+---------+-----------+-----------+
-| Construcción sistema de reportes       |       |        | X          | X       |           |           |
-+----------------------------------------+-------+--------+------------+---------+-----------+-----------+
-| Testeo y retroalimentación             |       |        |            |         | X         |           |
-+----------------------------------------+-------+--------+------------+---------+-----------+-----------+
-| Publicación                            |       |        |            |         |           | X         |
-+----------------------------------------+-------+--------+------------+---------+-----------+-----------+
+| Actividad | Julio | Agosto | Septiembre | Octubre | Noviembre | Diciembre |
+|----|----|----|----|----|----|----|
+| Acuerdo plan de trabajo | X |  |  |  |  |  |
+| Consolidación base de datos principal | X | X |  |  |  |  |
+| Consolidación base de datos auxiliares |  | X |  |  |  |  |
+| Construcción del dashboard |  |  | X | X |  |  |
+| Construcción sistema de reportes |  |  | X | X |  |  |
+| Testeo y retroalimentación |  |  |  |  | X |  |
+| Publicación |  |  |  |  |  | X |
