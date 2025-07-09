@@ -1,0 +1,16 @@
+rm(list = ls())
+
+#### Procesamiento SEPA-VID ####
+
+# Cargar librerias ----
+if (!require("pacman")) install.packages("pacman")
+library(pacman)
+p_load(tidyverse,
+       sjPlot,
+       sjmisc)
+
+load("output/data-general.rdata")
+
+view_df(data)
+
+frq(data)
