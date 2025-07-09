@@ -1,3 +1,5 @@
+rm(list = ls())
+
 #### Procesamiento SEPA-VID ####
 
 # Cargar librerias ----
@@ -9,7 +11,7 @@ p_load(tidyverse,
        janitor)
 
 # Cargar datos ----
-proyectos <- read_excel("input/data/proyectos.xlsx") %>% clean_names()
+proyectos <- read_excel("input/data/original/proyectos.xlsx") %>% clean_names()
 
 
 # Procesar proyectos ----
@@ -59,11 +61,13 @@ proyectos <- proyectos %>%
          anio_concurso=ano_concurso, estado_proyecto, adjudicado, en_ejecucion, duracion, fecha_inicio, fecha_termino, 
          disciplina_principal, area_disciplina_principal, disciplina_exacta_principal)
 
+save(proyectos, file="input/data/procesadas/sepavid-proc.rdata")
+
 # Bases ANID ----
 
-anid <- read_excel("input/data/BDH_HISTORICA.xlsx") %>% clean_names()
-milenio <- read_excel("input/data/BDH_PROYECTOS_MILENIO.xlsx") %>% clean_names()
-palabras_claves <- read_excel("input/data/BD_Palabras_claves_Proyectos.xlsx") |> clean_names()
+anid <- read_excel("input/data/original/BDH_HISTORICA.xlsx") %>% clean_names()
+milenio <- read_excel("input/data/original/BDH_PROYECTOS_MILENIO.xlsx") %>% clean_names()
+# palabras_claves <- read_excel("input/data/BD_Palabras_claves_Proyectos.xlsx") |> clean_names()
 
 
 # Procesar bases ----
@@ -74,10 +78,15 @@ anid_subset <- anid |> select(codigo_proyecto, monto_adjudicado, moneda, palabra
 milenio_subset <- milenio |> select(codigo_proyecto, monto_adjudicado=monto_adjudicado_m) |> 
   mutate(codigo_proyecto= as.character(codigo_proyecto))
 
-palabras_claves_subset <- palabras_claves |> select(codigo_proyecto, palabras_claves) |> 
-  mutate(codigo_proyecto= as.character(codigo_proyecto))
+# palabras_claves_subset <- palabras_claves |> select(codigo_proyecto, palabras_claves_b=palabras_claves) |> 
+#   mutate(codigo_proyecto= as.character(codigo_proyecto))
 
-data_anid <- bind_rows(anid_subset, milenio_subset, palabras_claves_subset)
+data_anid <- bind_rows(anid_subset, milenio_subset)
+
+# test <- anid |> filter(palabras_claves!="SIN INFORMACION")
+# unique(test$agno_concurso)
+
+# data_anid <- merge(data_anid, palabras_claves_subset, by="codigo_proyecto", all.x=T)
 
 
 proyectos <- merge(proyectos, data_anid, by="codigo_proyecto", all.x=T)
@@ -88,85 +97,7 @@ proyectos <- proyectos |>
   mutate(rut_investigador = ifelse(nchar(rut_investigador) == 9, paste0("0", rut_investigador), rut_investigador),
          rut_investigador = ifelse(nchar(rut_investigador) == 8, paste0("00", rut_investigador), rut_investigador))
 
-# Académicos -----
+save(proyectos, file="input/data/procesadas/proyectos.rdata")
 
-academicos <- read_excel("input/data/acad.xlsx") |> clean_names()
-retirados <- read_excel("input/data/retirados.xlsx", sheet="Retirados") |> clean_names()
 
-retirados <- retirados |> mutate(rut = rut_norm)
 
-academicos_historico <- bind_rows(academicos, retirados)
-
-academicos_historico <- academicos_historico |> select(reparticion,
-                                                       jerarquia,
-                                                       sexo,
-                                                       paterno,
-                                                       materno,
-                                                       nombres,
-                                                       edad,
-                                                       horas_reales,
-                                                       fech_ratif_jerarquia,
-                                                       fech_term_real,
-                                                       rut) |>
-  filter(reparticion != "-")
-
-academicos_historico <- academicos_historico %>% 
-  mutate(
-    reparticion = case_when(
-      str_detect(str_to_lower(reparticion), "psicología") ~ "Psicología",
-      str_detect(str_to_lower(reparticion), "sociología") ~ "Sociología",
-      str_detect(str_to_lower(reparticion), "antropología") ~ "Antropología",
-      str_detect(str_to_lower(reparticion), "trabajo social") ~ "Trabajo social",
-      str_detect(str_to_lower(reparticion), "educación") ~ "Educación",
-      str_detect(str_to_lower(reparticion), "postgrado") ~ "Postgrado",
-      TRUE ~ NA),
-    categoria = recode(jerarquia,
-                       "Investigador(a) Postdoctoral" = "Investigador(a) Postdoctoral",
-                       "Pendiente" = "Pendiente",
-                       "Prof. Asistente - Categ. Academica Doc." = "Docente",
-                       "Prof. Asociado - Categ. Academica Doc." = "Docente",
-                       "Prof.Titular - Categ. Academica Doc." = "Docente",
-                       "Prof. Asistente - Categ. Academica Ord." = "Ordinaria",
-                       "Prof. Asociado - Categ. Academica Ord." = "Ordinaria",
-                       "Prof.Titular - Categ. Academica Ord." = "Ordinaria",
-                       "Prof. Adjunto" = "Prof. Adjunto"),
-    jerarquia = case_when(
-      str_detect(str_to_lower(jerarquia), "titular") ~ "Titular",
-      str_detect(str_to_lower(jerarquia), "asociado") ~ "Asociado",
-      str_detect(str_to_lower(jerarquia), "asistente") ~ "Asistente",
-      str_detect(str_to_lower(jerarquia), "postdoctoral") ~ "Postdoc",
-      str_detect(str_to_lower(jerarquia), "adjunto") ~ "Adjunto",
-      str_detect(str_to_lower(jerarquia), "instructor") ~ "Instructor",
-      str_detect(str_to_lower(jerarquia), "ayudante") ~ "Ayudante",
-      str_detect(str_to_lower(jerarquia), "evaluado") ~ "No evaluado",
-    ),
-    # fech_ing_u = year(fech_ing_u),
-    # ingreso_reciente = case_when(
-    #   fech_ing_u <= 2014 ~ "Ingreso previo a 2015",
-    #   fech_ing_u > 2014 & fech_ing_u <= 2020 ~ "Ingreso 2015-2020",
-    #   fech_ing_u > 2020  ~ "Ingreso 2020-2025"
-    # ),
-    edad_tramos = case_when(
-      edad < 40 ~ "Menores de 40",
-      edad >= 40 & edad < 50 ~ "40-49 años",
-      edad >= 50 & edad < 60 ~ "50-59 años",
-      edad >= 60 & edad < 70 ~ "60-69 años",
-      edad >= 70 & edad < 80 ~ "70-79 años",
-      edad >= 80 ~ "Mayores de 80",
-    ),
-    retiro = year(fech_term_real),
-    nombre_completo = paste(nombres, paterno, materno),
-    nombre_completo = gsub("\\.", " ", nombre_completo), # Reemplazar puntos por espacio
-    nombre_completo = gsub("\\_", " ", nombre_completo), # Reemplazar guion bajo por espacio
-    nombre_completo = gsub("\\-", " ", nombre_completo), # Reemplazar guion por espacio
-  ) %>% 
-  select(rut_investigador=rut, nombre_completo, sexo, 
-         reparticion, horas_reales, jerarquia, categoria, edad_tramos, retiro)
-
-# Merge
-
-proyectos_merge <- merge(proyectos, academicos_historico, by="rut_investigador")
-
-proyectos_merge <- proyectos_merge |> select(-investigador)
-
-save(proyectos_merge, file="output/proyectos_proc.rdata")
