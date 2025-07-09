@@ -1,0 +1,102 @@
+## Base de datos principal
+
+La base recopila información sobre proyectos de investigación postulados y adjudicados por el cuerpo académico de la Facultad de Ciencias Sociales. Fue construida a partir de fuentes como SEPA-VID, ANID y la Oficina de Personal de la Facultad. Incluye proyectos en los que los académicos actualmente afiliados a la Facultad participan como investigadores principales o co-investigadores.
+
+Las variables contenidas en la base se organizan en tres grandes grupos: a) Información sobre los académicos; b) Información sobre los proyectos; y c) Datos sobre la trayectoria académica de los investigadores.
+
+## Información sobre los académicos
+
+- **Rut del Investigador**: Identificador único para investigadores
+
+- **Nombre del Investigador**: Nombre completo del investigador
+
+- **Género del investigador**
+
+- **Edad del investigador**
+
+- **Departamento del Investigador**
+
+- **Jornada del Investigador**, en horas. 
+
+- **Jerarquía actual del investigador**, según información actualizada a mayo del 2025.
+
+## Información sobre el Proyecto:
+
+- **Código del proyecto**: Identificador único para el proyecto. En casos de proyectos externos ANID, se mantiene el código de esa institución para facilitar el cruce de datos
+
+- **Título del proyecto**
+
+- **Institución** que financia el proyecto
+
+- **Concurso**: Nombre del concurso al que se postula
+
+- **Instrumento**: Nombre del instrumento específico al que se postula
+
+- **Proyecto Asociativo**: Indica si el proyecto corresponde a concursos de la Subdirección de Centros e Investigación Asociativa de ANID, incluyendo Anillos de Investigación, Centros de Investigación e Iniciativas Milenio.
+
+- **Investigación Aplicada**: Indica si el proyecto corresponde a concursos de la Subdirección de Investigación Aplicada e Innovación de ANID, incluyendo instrumentos como el FONIS, el FONIDE y los IDeA. 
+
+- **Rol del Investigador**: Rol del Investigador FACSO en el proyecto (Investigador Responsable o Coinvestigador)
+
+- **Estado del Proyecto**: Se refiere a si el proyecto se encuentra en estado de postulación, ejecución o finalización, o bien en otro estado.
+
+- **Proyecto adjudicado**: Recodificado a partir de **Estado del Proyecto**. Se considera que le proyecto fue adjudicado si se encuentra *en ejecución* o *finalizado*
+
+- **Proyecto en ejecución**: Indica que si el proyecto ha sido finalizado o si se encuentra actualmente en ejecución.
+
+- **Duración del proyecto**: Duración del proyecto en meses
+
+- **Año del concurso**: Año del concurso postulado
+
+- **Inicio del proyecto**: Fecha de inicio del proyecto
+
+- **Término del proyecto**: Fecha de término del proyecto
+
+- **Palabras claves**: Palabras claves del proyectos informadas a ANID. Solo disponibles para proyectos posteriores a 2016. 
+
+- **Monto adjudicado**: Monto adjudicado al proyecto, en miles de pesos (M$)
+
+## Datos sobre la trayectoria académica del investigador
+
+- **Jerarquización: Instructor**: Año en que el académico accedió a la jerarquía académica de Instructor.
+
+- **Jerarquización: Asistente**: Año en que el académico accedió a la jerarquía académica de Asistente.
+
+- **Jerarquización: Asociado**: Año en que el académico accedió a la jerarquía académica de Asociado.
+
+- **Jerarquización: Titular**: Año en que el académico accedió a la jerarquía académica de Titular.
+
+- **Jerarquía en el Proyecto**: Jerarquía del acadadémico en el momento en que postuló o se adjudicó el proyecto
+
+
+## Resumen
+
+La siguiente tabla resume las variables, códigos y etiquetas de la base de datos. 
+
+```{r}
+#| label: Resumen variables
+
+library(summarytools)
+library(dplyr)
+library(haven)
+
+load("output/data-general.rdata")
+
+data <- data %>%
+  mutate(across(where(~inherits(.x, "haven_labelled")), as_factor))
+
+print(dfSummary(data,
+          headings=FALSE,
+          style = "multiline",
+          plain.ascii = FALSE,
+          tmp.img.dir = 'tmp',
+          varnumbers = FALSE,
+          silent= TRUE,
+          split.by = NULL),
+      max.tbl.height = 500,
+      method = 'render',
+      # css.class = 'table',
+      silent = TRUE,
+      footnote = NA)
+```
+

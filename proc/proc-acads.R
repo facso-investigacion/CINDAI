@@ -8,7 +8,8 @@ library(pacman)
 p_load(tidyverse,
        readxl,
        writexl,
-       janitor)
+       janitor,
+       labelled)
 
 
 # Académicos -----
@@ -57,11 +58,11 @@ academicos_historico <- academicos_historico %>%
       str_detect(str_to_lower(jerarquia), "titular") ~ "Titular",
       str_detect(str_to_lower(jerarquia), "asociado") ~ "Asociado",
       str_detect(str_to_lower(jerarquia), "asistente") ~ "Asistente",
-      str_detect(str_to_lower(jerarquia), "postdoctoral") ~ "Postdoc",
-      str_detect(str_to_lower(jerarquia), "adjunto") ~ "Adjunto",
+      str_detect(str_to_lower(jerarquia), "postdoctoral") ~ NA,
+      str_detect(str_to_lower(jerarquia), "adjunto") ~ NA,
       str_detect(str_to_lower(jerarquia), "instructor") ~ "Instructor",
-      str_detect(str_to_lower(jerarquia), "ayudante") ~ "Ayudante",
-      str_detect(str_to_lower(jerarquia), "evaluado") ~ "No evaluado",
+      str_detect(str_to_lower(jerarquia), "ayudante") ~ NA,
+      str_detect(str_to_lower(jerarquia), "evaluado") ~ NA,
     ),
     # fech_ing_u = year(fech_ing_u),
     # ingreso_reciente = case_when(
@@ -69,24 +70,25 @@ academicos_historico <- academicos_historico %>%
     #   fech_ing_u > 2014 & fech_ing_u <= 2020 ~ "Ingreso 2015-2020",
     #   fech_ing_u > 2020  ~ "Ingreso 2020-2025"
     # ),
-    edad_tramos = case_when(
-      edad < 40 ~ "Menores de 40",
-      edad >= 40 & edad < 50 ~ "40-49 años",
-      edad >= 50 & edad < 60 ~ "50-59 años",
-      edad >= 60 & edad < 70 ~ "60-69 años",
-      edad >= 70 & edad < 80 ~ "70-79 años",
-      edad >= 80 ~ "Mayores de 80",
-    ),
-    jerarquizacion= year(fech_ratif_jerarquia),
     retiro = year(fech_term_real),
     retiro= ifelse(retiro==2099, 2024, retiro),
     nombre_completo = paste(nombres, paterno, materno),
     nombre_completo = gsub("\\.", " ", nombre_completo), # Reemplazar puntos por espacio
     nombre_completo = gsub("\\_", " ", nombre_completo), # Reemplazar guion bajo por espacio
-    nombre_completo = gsub("\\-", " ", nombre_completo), # Reemplazar guion por espacio
+    nombre_completo = gsub("\\-", " ", nombre_completo), # Reemplazar guion por espacio,
   ) %>% 
   select(rut_investigador=rut, nombre_completo, sexo, 
-         reparticion, horas_reales, jerarquia, categoria, edad, edad_tramos, jerarquizacion, retiro)
+         reparticion, horas_reales, jerarquia, categoria, edad, retiro) |>
+  mutate(rut_investigador=set_variable_labels(rut_investigador, "RUT Investigador"),
+         nombre_completo=set_variable_labels(nombre_completo, "Nombre Investigador"),
+         sexo=set_variable_labels(sexo, "Género Investigador"),
+         reparticion=set_variable_labels(reparticion, "Departamento Investigador"),
+         horas_reales=set_variable_labels(horas_reales, "Jornada Investigador"),
+         jerarquia=set_variable_labels(jerarquia, "Jerarquía actual del Investigador"),
+         categoria=set_variable_labels(categoria, "Categoría académica del Investigador"),
+         edad=set_variable_labels(edad, "Edad del Investigador"),
+         retiro=set_variable_labels(retiro, "Año de retiro"),
+         )
 
 academicos_historico <- academicos_historico %>%
   group_by(rut_investigador) %>%
@@ -107,12 +109,13 @@ academicos_historico <- academicos_historico %>%
 
 load("input/data/procesadas/proyectos.rdata")
 
-proyectos_merge <- merge(proyectos, academicos_historico, by.x = "rut_investigador")
+proyectos_merge <- proyectos |>
+  right_join(academicos_historico, by="rut_investigador")
+  
 
 proyectos_merge <- proyectos_merge |>
   mutate(proyecto_facso= ifelse(retiro>=anio_concurso, 1, 0)) |>
   filter(proyecto_facso==1 | is.na(proyecto_facso)) |>
-  select(-c("investigador", "proyecto_facso")) |>
-  mutate(jerarquia_proyecto= ifelse(anio_concurso>jerarquizacion, jerarquia, NA))
+  select(-c("investigador", "proyecto_facso"))
 
 save(proyectos_merge, file="input/data/procesadas/proyectos-merge.rdata")

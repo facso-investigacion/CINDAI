@@ -8,7 +8,8 @@ library(pacman)
 p_load(tidyverse,
        readxl,
        writexl,
-       janitor)
+       janitor,
+       labelled)
 
 load("input/data/procesadas/proyectos-merge.rdata")
 
@@ -74,19 +75,37 @@ jerarq_wide <- jeraq %>%
          instructor= Instructor,
          asistente= Asistente,
          asociado= Asociado,
-         titular= Titular)
+         titular= Titular) |>
+  mutate(
+    rut_investigador= set_variable_labels(rut_investigador, "RUT Investigador"),
+    instructor= set_variable_labels(instructor, "Jeraquización: Instructor"),
+    asistente= set_variable_labels(asistente, "Jerarquización: Asistente"),
+    asociado= set_variable_labels(asociado, "Jerarquización: Asociado"),
+    titular= set_variable_labels(titular, "Jerarquización: Titular"),
+    )
 
 
 
-proyectos_merge <- merge(proyectos_merge, jerarq_wide, by="rut_investigador")
+
+proyectos_merge <- proyectos_merge |>
+  left_join(jerarq_wide, by="rut_investigador")
+  
 
 proyectos_merge <- proyectos_merge |>
   mutate(jerarquia_proyecto= case_when(
     anio_concurso>titular ~ "Titular",
     anio_concurso>asociado & anio_concurso<=titular ~ "Asociado",
     anio_concurso>asistente & anio_concurso<=asociado ~ "Asistente",
-    anio_concurso>instructor & anio_concurso<=asistente ~ "Instructor")) |>
+    anio_concurso>instructor & anio_concurso<=asistente ~ "Instructor"),
+    jerarquia_proyecto= set_variable_labels(jerarquia_proyecto, "Jerarquía en el Proyecto")) |>
   select(rut_investigador,
+         nombre_completo,
+         sexo,
+         edad,
+         reparticion, 
+         horas_reales,
+         jerarquia_actual=jerarquia,
+         categoria,
          codigo_proyecto,
          titulo,
          institucion,
@@ -108,14 +127,6 @@ proyectos_merge <- proyectos_merge |>
          palabras_claves,
          monto_adjudicado,
          moneda,
-         nombre_completo,
-         sexo,
-         edad,
-         edad_tramos, 
-         reparticion, 
-         horas_reales,
-         jerarquia_actual=jerarquia,
-         categoria,
          instructor,
          asistente,
          asociado,
@@ -128,7 +139,8 @@ proyectos_merge <- proyectos_merge |>
 
 data <- 
   proyectos_merge |>
-  filter(is.na(retiro))
+  filter(is.na(retiro)) |>
+  select(-retiro)
 
 save(data, file="output/data-general.rdata")
 
