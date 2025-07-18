@@ -1,0 +1,38 @@
+# Archivos de sistema (Windows)
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Archivos temporales y de respaldo
+*.tmp
+*.swp
+*.bak
+*~
+*.log
+
+# Archivos de Quarto
+*.md
+.cache/
+
+# Archivos R y RStudio
+.Rhistory
+.Rproj.user/
+.Ruserdata
+.Rapp.history
+
+# Archivos Python
+__pycache__/
+*.py[cod]
+*.ipynb_checkpoints
+
+# Entornos virtuales
+.venv/
+env/
+venv/
+
+# Configuración personal
+.env
+*.key
+*.pem
+*.secret
+

@@ -1,4 +1,0 @@
-[1,"==> quarto preview index.qmd --to default --no-watch-inputs --no-browse\n\n"]
-[1,"pandoc \n  to: html\n  output-file: index.html\n  standalone: true\n  toc: true\n  number-sections: false\n  title-prefix: Libro de Códigos\n  section-divs: true\n  html-math-method: mathjax\n  wrap: none\n  default-image-extension: png\n  \nmetadata\n  crossref:\n    chapters: true\n  document-css: false\n  link-citations: true\n  date-format: long\n  lang: en\n  theme: cosmo\n  title: Libro de Códigos\n  author: Dirección de Investigación y Publicaciones\n  date: '2025'\n  \n"]
-[1,"Output created: docs\\index.html\n\nWatching files for changes\n"]
-[1,"Browse at http://localhost:4952/index.html\n"]
