@@ -36,3 +36,5 @@ venv/
 *.pem
 *.secret
 
+
+/.quarto/

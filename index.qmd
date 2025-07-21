@@ -1,3 +1,3 @@
 ## Introducción {.unnumbered}
 
-Libro de códigos para el uso de bases de datos de la Dirección de Investigación y Publicaciones
+Diagóstico y propuesta de gestión de información científica de la Dirección de Investigación de la Facultad de Ciencias Sociales. 

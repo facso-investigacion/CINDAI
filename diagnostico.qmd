@@ -1,0 +1,90 @@
+## Diagnóstico
+
+## Principales fuentes de información
+
+Actualmente, las fuentes de datos sobre investigación y otros datos claves se encuentran dispersos en diferentes bases de datos, entre las que se destacan:
+
+a)  **SEPA-VID**
+
+Principal repositorio de proyectos de investigación en la Universidad. Permite tener acceso a proyectos adjudicados y postulados por académicos de la Universidad de Chile. La base tiene como unidad de análisis los proyectos, enummerando en columnas a los investigadores principales y coinvestigadores, así como sus ruts y afiliación institucional. Los proyectos tienen un *ID* (que parece ser interno) y un *Código*, que es un identificador proveniente de ANID o de la VID.
+
+b)  **Repositorio ANID**
+
+En su [repositorio en Github](https://github.com/ANID-GITHUB), ANID recopila 4 bases de datos que contienen información relevante sobre investigación en la Facultad:
+
+-   Base de Datos Histórica Proyectos Adjudicados ANID: Incluye fondos adjudicados para concursos FONDECYT Regular, de Iniciación, Asociativos, entre otros, entre 1982 y 2025. Incluye información sobre el investigador responsable, la institución patrocinante,el monto adjudicado y, desde 2024, las palabras claves del proyecto.
+
+-   Base de postulaciones: Además, incluye un consolidado de postulaciones ingresadas a través del Sistema de Postulación en Línea de la ANID, entre 2016 y 2024.
+
+-   Base de Colaboración Institucional: Una base *long* de investigadores colaboradores en proyectos adjudicados por ANID entre 2016 y 2024.
+
+-   Base de palabras claves: Palabras claves declaradas en postulaciones adjudicadas por ANID hasta el 31 de diciembre del 2023. Desde 2024 se incorporan en el histórico de proyectos adjudicados.
+
+c)  **Base de Personal**
+
+Si bien no está orientada directamente a la investigación, esta base es clave para caracterizar al cuerpo académico de la Facultad, incluyendo datos como género, edad, jerarquía y departamento.
+
+d)  **RPI**
+
+Formulario interno para gestionar el patronicio de proyectos en la Facultad. Incluye información sobre los proyectos, investigadores principales, coinvestigadores, instituciones asociadas y patrocinantes.
+
+e)  **Colaboratorio**
+
+Recopila información a partir de los ORCID de los académicos. Sin embargo, las bases no son tan fáciles de cruzar con otros datos. Además, no incluye a todos los académicos
+
+f)  **Fichas académicas y CV estandarizados**
+
+Contienen gran cantidad de información, pero no son bases de datos estructuradas, por lo que requieren mucha digitación manual. Además, sus criterios de construcción son arbitrarios y poco claros.
+
+## Problemas identificados
+
+Actualmente, la mayor parte del análisis depende de los datos contenidos en SEPA-VID. Sin embargo, el trabajo con este repositorio presenta una serie de problema:
+
+-   El acceso es restringido, por lo que cualquier solicitud de datos desde otras unidades debe pasar necesariamente por la Dirección de Investigación.
+
+-   No contiene información clave para el trabajo de la Dirección, el equipo directivo de la Facultad y otras unidades que requieran datos. Esto incluye información sobre internacionalización, género, jerarquía, departamento o edad.
+
+-   Además, requiere procesamientos debido a inconsistencias en las etiquetas de concurso y departamento.
+
+-   Carece de libros de códigos y de manuales de uso. En algunas columnas no hay claridad de sus definiciones y categorías.
+
+La dispersión de los datos actuales, y las limitaciones de SEPA-VID provocan consecuencias tanto a nivel interno como externo:
+
+-   **A nivel de gestión interna**: Limita la capacidad de generar reportes periódicos sobre el estado de de la investigación a nivel de la Facultad
+-   **A nivel de requerimientos internos**: Implica que cada solicitud de datos realizada por otras unidades debe ser respondida generando reportes *adhoc*, duplicando esfuerzos y quitando tiempo para otras tareas.
+-   **A nivel externo**: Quita visibilidad a los logros de la Facultad en el área de la Investigación.
+
+
+## Partes interesadas
+
++-----------------------------------------+--------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+| Unidad                                  | **Contraparte**                                                    | Interés                                                                                                    |
++=========================================+====================================================================+============================================================================================================+
+| Dirección Académica                     | Prof. María Antonieta Urquieta, Directora.                         | Relación entre investigación y progresión académica                                                        |
+|                                         |                                                                    |                                                                                                            |
+|                                         | Ignacio Espinoza, Asistente                                        |                                                                                                            |
++-----------------------------------------+--------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+| Escuela de Postgrado                    | Prof. Catherinne Galaz, Directora.                                 | Producitividad por claustros de programas de postgrado                                                     |
+|                                         |                                                                    |                                                                                                            |
+|                                         | Anita Fredes, Coordinadora                                         |                                                                                                            |
+|                                         |                                                                    |                                                                                                            |
+|                                         | Diana Bellón, Profesional Gestión de la Información y Acreditación |                                                                                                            |
++-----------------------------------------+--------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+| Dirección de Género                     | Prof. Carolina Franch, Directora                                   | Tasas de adjudicación por género                                                                           |
+|                                         |                                                                    |                                                                                                            |
+|                                         | Pamela Saavedra, Coordinadora                                      | Proyectos de investigación que aborden temáticas de género                                                 |
++-----------------------------------------+--------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+| Dirección de Relaciones Internacionales | Prof. Andrés Troncoso, Director                                    | Colaboración de académicos con investigadores o instituciones internacionales                              |
+|                                         |                                                                    |                                                                                                            |
+|                                         | Ivania Almendra, Asistente                                         | Estancias de Investigación                                                                                 |
+|                                         |                                                                    |                                                                                                            |
+|                                         |                                                                    | Fondos internacionales de Investigación                                                                    |
++-----------------------------------------+--------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+| Departamentos                           | Directores/as y Coordinadores/as de Investigación                  | Tasas de adjudicación e historial de académicos de los departamentos                                       |
++-----------------------------------------+--------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+| Unidad de Educación Continua            |                                                                    | Conocer líneas de investigación de los académicos de la Facultad para crear y ofertas cursos de extensión. |
++-----------------------------------------+--------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+| Unidad de Innovación y Transferencia    |                                                                    | Tasas de adjudicación en proyectos de innovación y desarrollo                                              |
++-----------------------------------------+--------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+| Estudiantes                             |                                                                    | Conocer las líneas de investigación de los académicos de la Facultad.                                      |
++-----------------------------------------+--------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------+

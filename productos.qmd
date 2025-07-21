@@ -1,0 +1,5 @@
+## Productos
+
+A continuación, se describirá el proceso de construcción de los principales productos de la propuesta: 
+
+ - [Base Principal](base-principal.qmd)

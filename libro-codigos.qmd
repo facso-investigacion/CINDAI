@@ -1,5 +1,0 @@
----
-title: "LIbro de Códigos"
-author: "Dirección de Investigación y Publicaciones"
-format: html
----

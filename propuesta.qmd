@@ -1,0 +1,66 @@
+## Propuesta
+
+Esta propuesta busca **desarrollar un sistema local e integrado de gestión y visualización de información científica** que permita consolidar, actualizar y utilizar estratégicamente los datos de proyectos de investigación en FACSO
+
+## Productos
+
+### Base de datos integrada de proyectos de investigación
+
+En primer lugar, es necesaria la construcción de una base integrada a partir de las bases de SEPA-VID, ANID y la base de personal. La estructura de ésta es una base *long*, con los **académicos FACSO** como unidad de análisis. Para cada académico, se podrían obtener los siguientes datos:
+
+-   Información sobre el académico: Rol del académico en el proyecto, afiliación institucional, edad, género, jerarquía.
+-   Información sobre el proyecto: Identificador, Título, Concurso, Instrumento, Año de inicio y término, Investigador Responsable, monto adjudicado, palabras claves.
+
+**Repositorio, acceso y actualización**
+
+La base estará alojada en un repositorio en Github. Esto permitirá su actualización periódica mediante *pull-requests* por parte del equipo de la DIP.
+
+En primera instancia, la base permanecerá en un repositorio privado para salvaguardar información potencialmente sensiblemente sobre los investigadores.
+
+### Base de datos auxiliares
+
+En segundo lugar, se propone construir bases auxiliares, cruzables de manera sencilla con la base principal, para facilitar el análisis de redes de colaboración con otras instituciones, tanto a nivel nacional como internacional. Estas bases seguirían los mismos criterios de acceso y actualización que la base principal.
+
+### Visualización
+
+Se implementará un *dashboard* para la visualización pública de datos sintéticos de investigación en la Facultad. El dashboard tendría distintas pestañas poniendo diversos enfasis en las necesidades identificadas para las diversas unidades:
+
+1.  **Información general**: Evolución de número y tasa de adjudicación de proyectos de investigación de la Facultad.
+
+    > *Stakeholders claves: Equipo directivo; Dirección de Investigación*
+
+2.  **Progresión Académica**: Evolución de número y tasa de adjudicación por jerarquía académica. Diferencias en las tasas de adjudicación según resultados en los procesos de jerarquización.
+
+    > *Stakeholders claves: Dirección Académica; Comisión de Evaluación Académica*.
+
+3.  **Postgrado:** Proyectos adjudicados por académicos de los programas de la Facultad. Cantidad de académicos por claustro con al menos 1 proyecto adjudicados en los últimos 5 años (criterio CNA).
+
+    > *Stakeholders claves: Dirección de Postgrado; Programas de Postgrado*
+
+4.  **Género**: Cantidad de proyectos de investigación adjudicados que tratan temas sobre género. Cantidad de proyectos con Investigadoras Reponsables mujeres en la Facultad.
+
+    > *Stakeholders claves: Dirección de Género*
+
+5.  **Redes e Internacionalización**: Redes de colaboración con académicos e institucionales internacionales y nacionales. Proyectos internacionales adjudicados.
+
+    > *Stakeholders claves: Dirección de Relaciones Internacionales; Unidad de Innovación y Transferencia*
+
+6.  **Innovación**: Tasas de adjudicación de proyectos de innovación y desarrollo.
+
+    > *Stakeholders claves: Unidad de Innovación y Transferencia*
+
+7.  **Líneas de Investigación**: Nube y redes de palabras claves en projectos adjudicados en la Facultad
+
+    > *Stakeholders claves: Unidad de Educación Continua; Estudiantes*
+
+### Reportes
+
+Eventualmente, se podría dar la opción de reportes a nivel agregado e individual. Esto requeriría crear accesos diferenciados para distintos actores de la Facultad. Por ejemplo:
+
+-   Equipo Directivo de la Facultad: Datos agregados a nivel de Facultad y departamentos
+-   Directores de departamento (o coordinadores de investigación): Acceso a datos generales e individuales de su departamento
+-   Académicos: Acceso a un reporte personal.
+
+### Documentación
+
+El repositorio de las bases debe incluir documentación clara sobre la construcción de las bases de datos y el visualizador, incluyendo libros de códigos y reportes técnicos.
