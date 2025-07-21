@@ -80,7 +80,7 @@ library(summarytools)
 library(dplyr)
 library(haven)
 
-load("output/data-general.rdata")
+load("input/data-general.rdata")
 
 data <- data %>%
   mutate(across(where(~inherits(.x, "haven_labelled")), as_factor))
