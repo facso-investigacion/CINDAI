@@ -1,5 +1,7 @@
 ## Diagnóstico
 
+La primera parte del diagnóstico se centrará en identificar las condiciones actuales de gestión de información científica en la Facultad, describiendo las principales fuentes desde que la Dirección extrae datos sobre investigación, y las problemáticas que se derivan de este estado. En la segunda parte, en tanto, se identifican algunos actores claves en la Facultad y como sus intereses se vinculan a datos de investigación. 
+
 ## Principales fuentes de información
 
 Actualmente, las fuentes de datos sobre investigación y otros datos claves se encuentran dispersos en diferentes bases de datos, entre las que se destacan:

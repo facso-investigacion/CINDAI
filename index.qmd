@@ -1,3 +1,28 @@
 ## Introducción {.unnumbered}
 
-Diagóstico y propuesta de gestión de información científica de la Dirección de Investigación de la Facultad de Ciencias Sociales. 
+La actual decanatura se ha puesto como propósito desarrollar e implementar una política de investigación que permita posicionar la investigación como una característica central del quehacer académico en la Facultad con un alcance nacional, y que esté asociada a la gestión del cuerpo académico, a la vinculación con el medio, y a la formación y promoción en temas de investigación social.
+
+Desde la Dirección de Investigación se han asumido estos desafíos, logrando avances en distintas dimensiones, entre ellas la promoción de proyectos de investigación individuales y colaborativos mediante fondos internos como el FPCI y el FOAS. No obstante, persisten nudos críticos en áreas estratégicas para la Dirección.
+
+Uno de estos nudos se relaciona con la gestión de la información científica, lo que limita la capacidad institucional para planificar, hacer seguimiento y utilizar estratégicamente los datos de investigación. Entre las principales limitaciones identificadas se encuentran:
+
+- Capacidad limitada para trazar y analizar las trayectorias de investigación del cuerpo académico.
+
+- Carencia de una plataforma interna que articule los datos de investigación con otras dimensiones de la gestión académica.
+
+- Falta de sistematización y escasa capacidad para generar reportes integrados y actualizados sobre productividad académica.
+
+- Dificultades para realizar análisis longitudinales que permitan identificar cambios y tendencias en la investigación de la Facultad.
+
+En este contexto, el presente documento tiene como propósito presentar una propuesta orientada a **desarrollar un sistema local e integrado de gestión, análisis y visualización de información científica**, con los siguientes objetivos:
+
+- **Consolidar y actualizar los datos de investigación** del cuerpo académico de la Facultad.
+
+- **Identificar trayectorias académicas** en términos de postulación, adjudicación y ejecución de fondos de investigación.
+
+- **Generar un sistema integrado de visualización y reportes**, que permita acceder a información estratégica de manera sintética.
+
+- **Mapear áreas y líneas de investigación activas** del cuerpo académico.
+
+A continuación, se profundizará en el diagnóstico de la gestión actual de los datos de investigación en la Facultad, así como en la identificación de actores clave y partes interesadas. Posteriormente, se delineará la propuesta general para el fortalecimiento de la gestión de información desde la Dirección, seguida de una descripción detallada de los productos propuestos.
+

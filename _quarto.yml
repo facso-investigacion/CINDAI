@@ -17,6 +17,9 @@ book:
     - part: productos.qmd
       chapters:
        - base-principal.qmd
+       - retirados.qmd
+       - colaboracion-institucional.qmd
+       - colaboracion-academicos.qmd
     
 # bibliography: ocs.bib
 

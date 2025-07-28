@@ -1,0 +1,37 @@
+## Base académicos retirados
+
+La base recopila proyectos de investigació adjudicados y postulados por Académicos retirados durante su estancia en la Facultad. Entendemos por *retirado* a cualquier académico que haya abandonado la Facultad, ya sea por jubilación, renuncia u otro motivo. 
+
+Las variables son esencialmente las mismas que la base general. Se agrega una columna indicando el **Año de retiro** del académico. 
+
+
+## Resumen
+
+La siguiente tabla resume las variables, códigos y etiquetas de la base de datos. 
+
+```{r}
+#| label: Resumen variables
+
+library(summarytools)
+library(tidyverse)
+library(haven)
+
+load("input/retirados.rdata")
+
+data <- retirados %>%
+  mutate(across(where(~inherits(.x, "haven_labelled")), as_factor))
+
+print(dfSummary(data,
+          headings=FALSE,
+          style = "multiline",
+          plain.ascii = FALSE,
+          tmp.img.dir = 'tmp',
+          varnumbers = FALSE,
+          silent= TRUE,
+          split.by = NULL),
+      max.tbl.height = 500,
+      method = 'render',
+      # css.class = 'table',
+      silent = TRUE,
+      footnote = NA)
+```

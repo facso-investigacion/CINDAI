@@ -1,5 +1,11 @@
-## Productos
+##  Bases de datos
 
 A continuación, se describirá el proceso de construcción de los principales productos de la propuesta: 
 
  - [Base Principal](base-principal.qmd)
+ - Bases auxiliares:
+    - [Proyectos de Investigación de académicos retirados](retirados.qmd)
+    - [Colaboración Institucional](colaboracion-institucional.qmd)
+    - [Colaboración Académicos](colaboracion-academicos.qmd)
+    
+    

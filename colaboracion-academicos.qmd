@@ -1,0 +1,46 @@
+## Colaboradores y Coinvestigadores
+
+Esta base contiene los académicos que han colaborado con académicos FACSO en proyectos ANID desde el año 2016, ya sea en rol de coinvestigador o investigador responsable. Debido a que la [base de datos de ANID](https://github.com/ANID-GITHUB/Colaboracion_Institucional) no cuenta con un identificador único para investigadores, el cruce de ésta con las bases de la facultad se realizó mediante el paquete [`fuzzyjoin`](https://github.com/dgrtwo/fuzzyjoin), que permite hacer cruces inexactos a partir de coincidencias en cadenas o expresiones regulares. Dada las características de la técnica, es posible que la lista se encuentre incompleta. 
+
+Las variables disponible en estas bases son:
+
+- **Código del proyecto**: Identificador único del proyecto registrado por ANID. Esta variable permite el con la [Base Principal](base-principal.qmd)
+
+- **Nombre del Investigador**
+
+- **Rol del Investigador**: Distingue si el investigador participó del proyecto en calidad de Coinvestigador o de Investigador Responsable.
+
+- **Sexo del Investigador**
+
+- **Institución del Investigador**
+
+## Resumen
+
+La siguiente tabla resume las variables, códigos y etiquetas de la base de datos.
+
+```{r}
+#| label: Resumen variables
+
+library(summarytools)
+library(tidyverse)
+library(haven)
+
+load("input/cois.rdata")
+
+data <- cois %>%
+  mutate(across(where(~inherits(.x, "haven_labelled")), as_factor))
+
+print(dfSummary(data,
+          headings=FALSE,
+          style = "multiline",
+          plain.ascii = FALSE,
+          tmp.img.dir = 'tmp',
+          varnumbers = FALSE,
+          silent= TRUE,
+          split.by = NULL),
+      max.tbl.height = 500,
+      method = 'render',
+      # css.class = 'table',
+      silent = TRUE,
+      footnote = NA)
+```

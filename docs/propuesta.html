@@ -127,7 +127,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./productos.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Productos</span></a>
+ <span class="menu-text">Bases de datos</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -137,6 +137,24 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="./base-principal.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Base de datos principal</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./retirados.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Base académicos retirados</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./colaboracion-institucional.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Instituciones Colaboradoras</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./colaboracion-academicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Colaboradores y Coinvestigadores</span></span></a>
   </div>
 </li>
       </ul>
@@ -151,13 +169,13 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#productos" id="toc-productos" class="nav-link active" data-scroll-target="#productos"><span class="header-section-number">2.1</span> Productos</a>
+  <li><a href="#principios-fair" id="toc-principios-fair" class="nav-link active" data-scroll-target="#principios-fair"><span class="header-section-number">2.1</span> Principios FAIR</a></li>
+  <li><a href="#productos" id="toc-productos" class="nav-link" data-scroll-target="#productos"><span class="header-section-number">2.2</span> Productos</a>
   <ul class="collapse">
-  <li><a href="#base-de-datos-integrada-de-proyectos-de-investigación" id="toc-base-de-datos-integrada-de-proyectos-de-investigación" class="nav-link" data-scroll-target="#base-de-datos-integrada-de-proyectos-de-investigación"><span class="header-section-number">2.1.1</span> Base de datos integrada de proyectos de investigación</a></li>
-  <li><a href="#base-de-datos-auxiliares" id="toc-base-de-datos-auxiliares" class="nav-link" data-scroll-target="#base-de-datos-auxiliares"><span class="header-section-number">2.1.2</span> Base de datos auxiliares</a></li>
-  <li><a href="#visualización" id="toc-visualización" class="nav-link" data-scroll-target="#visualización"><span class="header-section-number">2.1.3</span> Visualización</a></li>
-  <li><a href="#reportes" id="toc-reportes" class="nav-link" data-scroll-target="#reportes"><span class="header-section-number">2.1.4</span> Reportes</a></li>
-  <li><a href="#documentación" id="toc-documentación" class="nav-link" data-scroll-target="#documentación"><span class="header-section-number">2.1.5</span> Documentación</a></li>
+  <li><a href="#base-de-datos-integrada-de-proyectos-de-investigación" id="toc-base-de-datos-integrada-de-proyectos-de-investigación" class="nav-link" data-scroll-target="#base-de-datos-integrada-de-proyectos-de-investigación"><span class="header-section-number">2.2.1</span> Base de datos integrada de proyectos de investigación</a></li>
+  <li><a href="#base-de-datos-auxiliares" id="toc-base-de-datos-auxiliares" class="nav-link" data-scroll-target="#base-de-datos-auxiliares"><span class="header-section-number">2.2.2</span> Base de datos auxiliares</a></li>
+  <li><a href="#visualización" id="toc-visualización" class="nav-link" data-scroll-target="#visualización"><span class="header-section-number">2.2.3</span> Visualización</a></li>
+  <li><a href="#documentación" id="toc-documentación" class="nav-link" data-scroll-target="#documentación"><span class="header-section-number">2.2.4</span> Documentación</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -184,69 +202,128 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Esta propuesta busca <strong>desarrollar un sistema local e integrado de gestión y visualización de información científica</strong> que permita consolidar, actualizar y utilizar estratégicamente los datos de proyectos de investigación en FACSO</p>
-<section id="productos" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="productos"><span class="header-section-number">2.1</span> Productos</h2>
-<section id="base-de-datos-integrada-de-proyectos-de-investigación" class="level3" data-number="2.1.1">
-<h3 data-number="2.1.1" class="anchored" data-anchor-id="base-de-datos-integrada-de-proyectos-de-investigación"><span class="header-section-number">2.1.1</span> Base de datos integrada de proyectos de investigación</h3>
+<section id="principios-fair" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="principios-fair"><span class="header-section-number">2.1</span> Principios FAIR</h2>
+<p>La propuesta se basa en la aplicación de los <strong>principios FAIR</strong> (<em>Findable, Accesible, Interoperable and Reusable</em>). Estos principios buscan crear un ecosistema de gestión del conocimiento más abierto y eficiente, facilitando que los datos sean fácilmente localizable, accesibles, integrables y reutilizables tanto por personas como por sistemas <a href="https://zenodo.org/records/15856492">(Hartley Belmar et al., 2025)</a>. Bajo estos principios, se aspira a que los datos de investigación en la Facultad sean:</p>
+<ol type="1">
+<li><p><strong>Encontrables</strong>: Los datos y metadatos deben ser fácilmente localizables por personas y sistemas, lo que se logran principalmente a través de <strong>identificadores únicos y persistentes</strong>.</p></li>
+<li><p><strong>Accesibles</strong> Datos y metadatos deben ser <strong>accesibles de manera abierta y transparente</strong>. En caso de que se consdera necesario mantener la privacidad parcial o total de los datos, se debe porporcionar una descripción clara sobre las razones y condiciones para su acceso.</p></li>
+<li><p><strong>Interoperables</strong>: Los datos deben poder integrarse fácilmente con otros sistemas. Esto implica que tanto datos, como códigos, documentos y metadatos deben encontrarse en <strong>formato abiertos y accesibles</strong>.</p></li>
+<li><p><strong>Reutilizables</strong>: Los datos deben ser utilizables en diversos contextos. Para ello se requiere:</p>
+<ul>
+<li><strong>Licencias claras y abiertas</strong> que expliquen las condiciones de uso.</li>
+<li><strong>Documentación</strong> completa sobre a generación y procesamiento de los datos, incluyendo libros de códigos y manuales de uso.</li>
+<li><strong>Registro de versiones</strong></li>
+</ul></li>
+</ol>
+<p>La implementación de los principios FAIR en la gestión de información no solo facilita el acceso y uso eficiente de la información, sino que también promueve una cultura de apertura y colaboración en la investigación. Al integrar estos principios en la estructura y gobernanzan de datos en FACSO, se busca transformar la forma en que se gestionan, actualizan y reutilizan los datos, asegurando que estos sean accesibles y reproducibles por la comunidad de la Facultad. Este enfoque facilitará la toma de decisiones informada, potenciando el uso estratégico de la información científica.</p>
+<p>De tal manera, esta propuesta tiene como objetivo desarrollar un sistema local e integrado de gesión y visualización de información científica en la Facultad de Cienicas Sociales. Este sistema permitirá consolidar, actualizar y utilizar estratégicamente los datos de los proyectos de investigación, garantizando que sean encontrables, accesibles, interoperables y reutilizables. Con ello, se busca mejorar la transparencia, eficiencia y sostenibilidad en la gestión de la información científica de la Facultad.</p>
+</section>
+<section id="productos" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="productos"><span class="header-section-number">2.2</span> Productos</h2>
+<section id="base-de-datos-integrada-de-proyectos-de-investigación" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="base-de-datos-integrada-de-proyectos-de-investigación"><span class="header-section-number">2.2.1</span> Base de datos integrada de proyectos de investigación</h3>
 <p>En primer lugar, es necesaria la construcción de una base integrada a partir de las bases de SEPA-VID, ANID y la base de personal. La estructura de ésta es una base <em>long</em>, con los <strong>académicos FACSO</strong> como unidad de análisis. Para cada académico, se podrían obtener los siguientes datos:</p>
 <ul>
 <li>Información sobre el académico: Rol del académico en el proyecto, afiliación institucional, edad, género, jerarquía.</li>
 <li>Información sobre el proyecto: Identificador, Título, Concurso, Instrumento, Año de inicio y término, Investigador Responsable, monto adjudicado, palabras claves.</li>
+<li>Información sobre la trayectoria académica del académicos: Incluyendo años de jerarquizaciones y jerarquía en el momento de adjudicarse el proyecto.</li>
 </ul>
-<p><strong>Repositorio, acceso y actualización</strong></p>
-<p>La base estará alojada en un repositorio en Github. Esto permitirá su actualización periódica mediante <em>pull-requests</em> por parte del equipo de la DIP.</p>
-<p>En primera instancia, la base permanecerá en un repositorio privado para salvaguardar información potencialmente sensiblemente sobre los investigadores.</p>
+<p><strong>Aplicación Principios FAIR</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 93%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Principio</th>
+<th>Aplicación</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Encontrables</td>
+<td>Los datos contarán con un <strong>identificador único</strong> tanto para <strong>proyectos</strong> como para <strong>investigadores</strong></td>
+</tr>
+<tr class="even">
+<td>Accesibles</td>
+<td>Considerando que la base contendrá información sensible sobre los investigadores y sus trayectorias académicas, <strong>la base se mantendrá inicialmente en un repositorio privado</strong>. Con el tiempo, se deberán acordar protocolos de acceso y uso.</td>
+</tr>
+<tr class="odd">
+<td>Interoperables</td>
+<td>La base de datos se almacenará en <strong>formato valores separado por comas (.csv), con codificación UTF-8 y encabezados claros</strong>.</td>
+</tr>
+<tr class="even">
+<td>Reutilizable</td>
+<td><p>La base de datos vendrá acompañada de su <strong>libro de códigos</strong>.</p>
+<p>El control de versiones de la base de datos se realizará mediante <strong>Git</strong>. Las actualizaciones se llevaran a cabo periódicamente mediante pull request, los cuales serán revisados y aprobados por el equipo DIP antes de ser fusionados con la rama principal.</p></td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="base-de-datos-auxiliares" class="level3" data-number="2.1.2">
-<h3 data-number="2.1.2" class="anchored" data-anchor-id="base-de-datos-auxiliares"><span class="header-section-number">2.1.2</span> Base de datos auxiliares</h3>
-<p>En segundo lugar, se propone construir bases auxiliares, cruzables de manera sencilla con la base principal, para facilitar el análisis de redes de colaboración con otras instituciones, tanto a nivel nacional como internacional. Estas bases seguirían los mismos criterios de acceso y actualización que la base principal.</p>
+<section id="base-de-datos-auxiliares" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="base-de-datos-auxiliares"><span class="header-section-number">2.2.2</span> Base de datos auxiliares</h3>
+<p>En segundo lugar, se propone construir bases auxiliares, cruzables de manera sencilla con la base principal. Estas bases incluyen.: información sobre académicos que se retiraron o abandonaron la Facultad; colaboración institucional; colaboración con académicos externos.</p>
+<p>La aplicación de los principios FAIR se realizará de la misma forma que con la base principal.</p>
 </section>
-<section id="visualización" class="level3" data-number="2.1.3">
-<h3 data-number="2.1.3" class="anchored" data-anchor-id="visualización"><span class="header-section-number">2.1.3</span> Visualización</h3>
+<section id="visualización" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="visualización"><span class="header-section-number">2.2.3</span> Visualización</h3>
 <p>Se implementará un <em>dashboard</em> para la visualización pública de datos sintéticos de investigación en la Facultad. El dashboard tendría distintas pestañas poniendo diversos enfasis en las necesidades identificadas para las diversas unidades:</p>
-<ol type="1">
-<li><p><strong>Información general</strong>: Evolución de número y tasa de adjudicación de proyectos de investigación de la Facultad.</p>
-<blockquote class="blockquote">
-<p><em>Stakeholders claves: Equipo directivo; Dirección de Investigación</em></p>
-</blockquote></li>
-<li><p><strong>Progresión Académica</strong>: Evolución de número y tasa de adjudicación por jerarquía académica. Diferencias en las tasas de adjudicación según resultados en los procesos de jerarquización.</p>
-<blockquote class="blockquote">
-<p><em>Stakeholders claves: Dirección Académica; Comisión de Evaluación Académica</em>.</p>
-</blockquote></li>
-<li><p><strong>Postgrado:</strong> Proyectos adjudicados por académicos de los programas de la Facultad. Cantidad de académicos por claustro con al menos 1 proyecto adjudicados en los últimos 5 años (criterio CNA).</p>
-<blockquote class="blockquote">
-<p><em>Stakeholders claves: Dirección de Postgrado; Programas de Postgrado</em></p>
-</blockquote></li>
-<li><p><strong>Género</strong>: Cantidad de proyectos de investigación adjudicados que tratan temas sobre género. Cantidad de proyectos con Investigadoras Reponsables mujeres en la Facultad.</p>
-<blockquote class="blockquote">
-<p><em>Stakeholders claves: Dirección de Género</em></p>
-</blockquote></li>
-<li><p><strong>Redes e Internacionalización</strong>: Redes de colaboración con académicos e institucionales internacionales y nacionales. Proyectos internacionales adjudicados.</p>
-<blockquote class="blockquote">
-<p><em>Stakeholders claves: Dirección de Relaciones Internacionales; Unidad de Innovación y Transferencia</em></p>
-</blockquote></li>
-<li><p><strong>Innovación</strong>: Tasas de adjudicación de proyectos de innovación y desarrollo.</p>
-<blockquote class="blockquote">
-<p><em>Stakeholders claves: Unidad de Innovación y Transferencia</em></p>
-</blockquote></li>
-<li><p><strong>Líneas de Investigación</strong>: Nube y redes de palabras claves en projectos adjudicados en la Facultad</p>
-<blockquote class="blockquote">
-<p><em>Stakeholders claves: Unidad de Educación Continua; Estudiantes</em></p>
-</blockquote></li>
-</ol>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 54%">
+<col style="width: 35%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Dimensión</th>
+<th>Descripción</th>
+<th>Stakeholder</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Información general</td>
+<td>Evolución de número y tasa de adjudicación de proyectos de investigación de la Facultad.</td>
+<td>Equipo directivo; Dirección de Investigación</td>
+</tr>
+<tr class="even">
+<td>Progresión Académica</td>
+<td>Evolución de número y tasa de adjudicación por jerarquía académica. Diferencias según resultados en los procesos de jerarquización.</td>
+<td>Dirección Académica; Comisión de Evaluación Académica</td>
+</tr>
+<tr class="odd">
+<td>Postgrado</td>
+<td>Proyectos adjudicados por académicos de los programas de la Facultad. Cantidad de académicos por claustro con al menos 1 proyecto adjudicado (últimos 5 años, criterio CNA).</td>
+<td>Dirección de Postgrado; Programas de Postgrado</td>
+</tr>
+<tr class="even">
+<td>Género</td>
+<td>Cantidad de proyectos adjudicados que tratan temas sobre género. Proyectos con Investigadoras Responsables mujeres en la Facultad.</td>
+<td>Dirección de Género</td>
+</tr>
+<tr class="odd">
+<td>Redes e Internacionalización</td>
+<td>Redes de colaboración con académicos e instituciones internacionales y nacionales. Proyectos internacionales adjudicados.</td>
+<td>Dirección de Relaciones Internacionales; Unidad de Innovación y Transferencia</td>
+</tr>
+<tr class="even">
+<td>Innovación</td>
+<td>Tasas de adjudicación de proyectos de innovación y desarrollo.</td>
+<td>Unidad de Innovación y Transferencia</td>
+</tr>
+<tr class="odd">
+<td>Líneas de Investigación</td>
+<td>Nube y redes de palabras claves en proyectos adjudicados en la Facultad.</td>
+<td>Unidad de Educación Continua; Estudiantes</td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="reportes" class="level3" data-number="2.1.4">
-<h3 data-number="2.1.4" class="anchored" data-anchor-id="reportes"><span class="header-section-number">2.1.4</span> Reportes</h3>
-<p>Eventualmente, se podría dar la opción de reportes a nivel agregado e individual. Esto requeriría crear accesos diferenciados para distintos actores de la Facultad. Por ejemplo:</p>
-<ul>
-<li>Equipo Directivo de la Facultad: Datos agregados a nivel de Facultad y departamentos</li>
-<li>Directores de departamento (o coordinadores de investigación): Acceso a datos generales e individuales de su departamento</li>
-<li>Académicos: Acceso a un reporte personal.</li>
-</ul>
-</section>
-<section id="documentación" class="level3" data-number="2.1.5">
-<h3 data-number="2.1.5" class="anchored" data-anchor-id="documentación"><span class="header-section-number">2.1.5</span> Documentación</h3>
+<section id="documentación" class="level3" data-number="2.2.4">
+<h3 data-number="2.2.4" class="anchored" data-anchor-id="documentación"><span class="header-section-number">2.2.4</span> Documentación</h3>
 <p>El repositorio de las bases debe incluir documentación clara sobre la construcción de las bases de datos y el visualizador, incluyendo libros de códigos y reportes técnicos.</p>
 
 
@@ -678,8 +755,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./productos.html" class="pagination-link" aria-label="Productos">
-        <span class="nav-page-text">Productos</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./productos.html" class="pagination-link" aria-label="Bases de datos">
+        <span class="nav-page-text">Bases de datos</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

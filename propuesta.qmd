@@ -1,6 +1,24 @@
 ## Propuesta
 
-Esta propuesta busca **desarrollar un sistema local e integrado de gestión y visualización de información científica** que permita consolidar, actualizar y utilizar estratégicamente los datos de proyectos de investigación en FACSO
+## Principios FAIR
+
+La propuesta se basa en la aplicación de los **principios FAIR** (*Findable, Accesible, Interoperable and Reusable*). Estos principios buscan crear un ecosistema de gestión del conocimiento más abierto y eficiente, facilitando que los datos sean fácilmente localizable, accesibles, integrables y reutilizables tanto por personas como por sistemas [(Hartley Belmar et al., 2025)](https://zenodo.org/records/15856492). Bajo estos principios, se aspira a que los datos de investigación en la Facultad sean:
+
+1.  **Encontrables**: Los datos y metadatos deben ser fácilmente localizables por personas y sistemas, lo que se logran principalmente a través de **identificadores únicos y persistentes**.
+
+2.  **Accesibles** Datos y metadatos deben ser **accesibles de manera abierta y transparente**. En caso de que se consdera necesario mantener la privacidad parcial o total de los datos, se debe porporcionar una descripción clara sobre las razones y condiciones para su acceso.
+
+3.  **Interoperables**: Los datos deben poder integrarse fácilmente con otros sistemas. Esto implica que tanto datos, como códigos, documentos y metadatos deben encontrarse en **formato abiertos y accesibles**.
+
+4.  **Reutilizables**: Los datos deben ser utilizables en diversos contextos. Para ello se requiere:
+
+    -   **Licencias claras y abiertas** que expliquen las condiciones de uso.
+    -   **Documentación** completa sobre a generación y procesamiento de los datos, incluyendo libros de códigos y manuales de uso.
+    -   **Registro de versiones**
+
+La implementación de los principios FAIR en la gestión de información no solo facilita el acceso y uso eficiente de la información, sino que también promueve una cultura de apertura y colaboración en la investigación. Al integrar estos principios en la estructura y gobernanzan de datos en FACSO, se busca transformar la forma en que se gestionan, actualizan y reutilizan los datos, asegurando que estos sean accesibles y reproducibles por la comunidad de la Facultad. Este enfoque facilitará la toma de decisiones informada, potenciando el uso estratégico de la información científica.
+
+De tal manera, esta propuesta tiene como objetivo desarrollar un sistema local e integrado de gesión y visualización de información científica en la Facultad de Cienicas Sociales. Este sistema permitirá consolidar, actualizar y utilizar estratégicamente los datos de los proyectos de investigación, garantizando que sean encontrables, accesibles, interoperables y reutilizables. Con ello, se busca mejorar la transparencia, eficiencia y sostenibilidad en la gestión de la información científica de la Facultad.
 
 ## Productos
 
@@ -10,56 +28,44 @@ En primer lugar, es necesaria la construcción de una base integrada a partir de
 
 -   Información sobre el académico: Rol del académico en el proyecto, afiliación institucional, edad, género, jerarquía.
 -   Información sobre el proyecto: Identificador, Título, Concurso, Instrumento, Año de inicio y término, Investigador Responsable, monto adjudicado, palabras claves.
+-   Información sobre la trayectoria académica del académicos: Incluyendo años de jerarquizaciones y jerarquía en el momento de adjudicarse el proyecto.
 
-**Repositorio, acceso y actualización**
+**Aplicación Principios FAIR**
 
-La base estará alojada en un repositorio en Github. Esto permitirá su actualización periódica mediante *pull-requests* por parte del equipo de la DIP.
-
-En primera instancia, la base permanecerá en un repositorio privado para salvaguardar información potencialmente sensiblemente sobre los investigadores.
++----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Principio      | Aplicación                                                                                                                                                                                                                                                       |
++================+==================================================================================================================================================================================================================================================================+
+| Encontrables   | Los datos contarán con un **identificador único** tanto para **proyectos** como para **investigadores**                                                                                                                                                          |
++----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Accesibles     | Considerando que la base contendrá información sensible sobre los investigadores y sus trayectorias académicas, **la base se mantendrá inicialmente en un repositorio privado**. Con el tiempo, se deberán acordar protocolos de acceso y uso.                   |
++----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Interoperables | La base de datos se almacenará en **formato valores separado por comas (.csv), con codificación UTF-8 y encabezados claros**.                                                                                                                                    |
++----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Reutilizable   | La base de datos vendrá acompañada de su **libro de códigos**.                                                                                                                                                                                                   |
+|                |                                                                                                                                                                                                                                                                  |
+|                | El control de versiones de la base de datos se realizará mediante **Git**. Las actualizaciones se llevaran a cabo periódicamente mediante pull request, los cuales serán revisados y aprobados por el equipo DIP antes de ser fusionados con la rama principal.  |
++----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 ### Base de datos auxiliares
 
-En segundo lugar, se propone construir bases auxiliares, cruzables de manera sencilla con la base principal, para facilitar el análisis de redes de colaboración con otras instituciones, tanto a nivel nacional como internacional. Estas bases seguirían los mismos criterios de acceso y actualización que la base principal.
+En segundo lugar, se propone construir bases auxiliares, cruzables de manera sencilla con la base principal. Estas bases incluyen.: información sobre académicos que se retiraron o abandonaron la Facultad; colaboración institucional; colaboración con académicos externos. 
+
+La aplicación de los principios FAIR se realizará de la misma forma que con la base principal. 
 
 ### Visualización
 
 Se implementará un *dashboard* para la visualización pública de datos sintéticos de investigación en la Facultad. El dashboard tendría distintas pestañas poniendo diversos enfasis en las necesidades identificadas para las diversas unidades:
 
-1.  **Información general**: Evolución de número y tasa de adjudicación de proyectos de investigación de la Facultad.
+| Dimensión                | Descripción                                                                                                                                   | Stakeholder                                                                                 |
+|--------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
+| Información general      | Evolución de número y tasa de adjudicación de proyectos de investigación de la Facultad.                                                    | Equipo directivo; Dirección de Investigación                                               |
+| Progresión Académica     | Evolución de número y tasa de adjudicación por jerarquía académica. Diferencias según resultados en los procesos de jerarquización.         | Dirección Académica; Comisión de Evaluación Académica                                      |
+| Postgrado                | Proyectos adjudicados por académicos de los programas de la Facultad. Cantidad de académicos por claustro con al menos 1 proyecto adjudicado (últimos 5 años, criterio CNA). | Dirección de Postgrado; Programas de Postgrado                                              |
+| Género                   | Cantidad de proyectos adjudicados que tratan temas sobre género. Proyectos con Investigadoras Responsables mujeres en la Facultad.           | Dirección de Género                                                                         |
+| Redes e Internacionalización | Redes de colaboración con académicos e instituciones internacionales y nacionales. Proyectos internacionales adjudicados.              | Dirección de Relaciones Internacionales; Unidad de Innovación y Transferencia              |
+| Innovación               | Tasas de adjudicación de proyectos de innovación y desarrollo.                                                                               | Unidad de Innovación y Transferencia                                                       |
+| Líneas de Investigación  | Nube y redes de palabras claves en proyectos adjudicados en la Facultad.                                                                     | Unidad de Educación Continua; Estudiantes                                                  |
 
-    > *Stakeholders claves: Equipo directivo; Dirección de Investigación*
-
-2.  **Progresión Académica**: Evolución de número y tasa de adjudicación por jerarquía académica. Diferencias en las tasas de adjudicación según resultados en los procesos de jerarquización.
-
-    > *Stakeholders claves: Dirección Académica; Comisión de Evaluación Académica*.
-
-3.  **Postgrado:** Proyectos adjudicados por académicos de los programas de la Facultad. Cantidad de académicos por claustro con al menos 1 proyecto adjudicados en los últimos 5 años (criterio CNA).
-
-    > *Stakeholders claves: Dirección de Postgrado; Programas de Postgrado*
-
-4.  **Género**: Cantidad de proyectos de investigación adjudicados que tratan temas sobre género. Cantidad de proyectos con Investigadoras Reponsables mujeres en la Facultad.
-
-    > *Stakeholders claves: Dirección de Género*
-
-5.  **Redes e Internacionalización**: Redes de colaboración con académicos e institucionales internacionales y nacionales. Proyectos internacionales adjudicados.
-
-    > *Stakeholders claves: Dirección de Relaciones Internacionales; Unidad de Innovación y Transferencia*
-
-6.  **Innovación**: Tasas de adjudicación de proyectos de innovación y desarrollo.
-
-    > *Stakeholders claves: Unidad de Innovación y Transferencia*
-
-7.  **Líneas de Investigación**: Nube y redes de palabras claves en projectos adjudicados en la Facultad
-
-    > *Stakeholders claves: Unidad de Educación Continua; Estudiantes*
-
-### Reportes
-
-Eventualmente, se podría dar la opción de reportes a nivel agregado e individual. Esto requeriría crear accesos diferenciados para distintos actores de la Facultad. Por ejemplo:
-
--   Equipo Directivo de la Facultad: Datos agregados a nivel de Facultad y departamentos
--   Directores de departamento (o coordinadores de investigación): Acceso a datos generales e individuales de su departamento
--   Académicos: Acceso a un reporte personal.
 
 ### Documentación
 

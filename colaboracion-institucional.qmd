@@ -1,0 +1,49 @@
+## Instituciones Colaboradoras
+
+Esta base contiene las instituciones con las que académicos de la Facultad han colaborado en proyectos ANID adjudicados o posultados desde el año 2016. Se construyó sobre el consolidado de instituciones recopilado por ANID es su repositorio de [Colaboración Institucional](https://github.com/ANID-GITHUB/Colaboracion_Institucional). Cada proyecto de esta base cuenta con la participación de al menos un académico
+Ident
+La base se compone de las siguientes variables:
+
+- **Código Proyecto**: Identificador único del proyecto registrado por ANID. Esta variable permite el con la [Base Principal](base-principal.qmd)
+
+- **Institucion Colaboradora**: Nombre de la Institución colaboradora. Se compone principalmente de universidades nacionales, pero también se registran otras instituciones nacionales, universidades extranjera y personas naturales.
+
+- **Rol de la Institución**: Indica el rol de la institución en el proyecto.
+
+- **RUT de la Institución**: Disponible solo en el caso de universidades nacionales
+
+- **País de la Institución**
+
+- **Tipo de Institución**: Indica si la institución colaboradora es una Universidad nacional, una institución nacional no universitaria, una institución extranjera o persona natural. 
+
+
+## Resumen
+
+La siguiente tabla resume las variables, códigos y etiquetas de la base de datos. 
+
+```{r}
+#| label: Resumen variables
+
+library(summarytools)
+library(tidyverse)
+library(haven)
+
+load("input/colab_instituciones.rdata")
+
+data <- colab_instituciones %>%
+  mutate(across(where(~inherits(.x, "haven_labelled")), as_factor))
+
+print(dfSummary(data,
+          headings=FALSE,
+          style = "multiline",
+          plain.ascii = FALSE,
+          tmp.img.dir = 'tmp',
+          varnumbers = FALSE,
+          silent= TRUE,
+          split.by = NULL),
+      max.tbl.height = 500,
+      method = 'render',
+      # css.class = 'table',
+      silent = TRUE,
+      footnote = NA)
+```
