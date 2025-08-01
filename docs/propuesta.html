@@ -172,10 +172,9 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#principios-fair" id="toc-principios-fair" class="nav-link active" data-scroll-target="#principios-fair"><span class="header-section-number">2.1</span> Principios FAIR</a></li>
   <li><a href="#productos" id="toc-productos" class="nav-link" data-scroll-target="#productos"><span class="header-section-number">2.2</span> Productos</a>
   <ul class="collapse">
-  <li><a href="#base-de-datos-integrada-de-proyectos-de-investigación" id="toc-base-de-datos-integrada-de-proyectos-de-investigación" class="nav-link" data-scroll-target="#base-de-datos-integrada-de-proyectos-de-investigación"><span class="header-section-number">2.2.1</span> Base de datos integrada de proyectos de investigación</a></li>
-  <li><a href="#base-de-datos-auxiliares" id="toc-base-de-datos-auxiliares" class="nav-link" data-scroll-target="#base-de-datos-auxiliares"><span class="header-section-number">2.2.2</span> Base de datos auxiliares</a></li>
-  <li><a href="#visualización" id="toc-visualización" class="nav-link" data-scroll-target="#visualización"><span class="header-section-number">2.2.3</span> Visualización</a></li>
-  <li><a href="#documentación" id="toc-documentación" class="nav-link" data-scroll-target="#documentación"><span class="header-section-number">2.2.4</span> Documentación</a></li>
+  <li><a href="#base-de-datos" id="toc-base-de-datos" class="nav-link" data-scroll-target="#base-de-datos"><span class="header-section-number">2.2.1</span> Base de datos</a></li>
+  <li><a href="#visualización" id="toc-visualización" class="nav-link" data-scroll-target="#visualización"><span class="header-section-number">2.2.2</span> Visualización</a></li>
+  <li><a href="#documentación" id="toc-documentación" class="nav-link" data-scroll-target="#documentación"><span class="header-section-number">2.2.3</span> Documentación</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -207,7 +206,7 @@ ul.task-list li input[type="checkbox"] {
 <p>La propuesta se basa en la aplicación de los <strong>principios FAIR</strong> (<em>Findable, Accesible, Interoperable and Reusable</em>). Estos principios buscan crear un ecosistema de gestión del conocimiento más abierto y eficiente, facilitando que los datos sean fácilmente localizable, accesibles, integrables y reutilizables tanto por personas como por sistemas <a href="https://zenodo.org/records/15856492">(Hartley Belmar et al., 2025)</a>. Bajo estos principios, se aspira a que los datos de investigación en la Facultad sean:</p>
 <ol type="1">
 <li><p><strong>Encontrables</strong>: Los datos y metadatos deben ser fácilmente localizables por personas y sistemas, lo que se logran principalmente a través de <strong>identificadores únicos y persistentes</strong>.</p></li>
-<li><p><strong>Accesibles</strong> Datos y metadatos deben ser <strong>accesibles de manera abierta y transparente</strong>. En caso de que se consdera necesario mantener la privacidad parcial o total de los datos, se debe porporcionar una descripción clara sobre las razones y condiciones para su acceso.</p></li>
+<li><p><strong>Accesibles:</strong> Datos y metadatos deben ser <strong>accesibles de manera abierta y transparente</strong>. En caso de que se consdera necesario mantener la privacidad parcial o total de los datos, se debe porporcionar una descripción clara sobre las razones y condiciones para su acceso.</p></li>
 <li><p><strong>Interoperables</strong>: Los datos deben poder integrarse fácilmente con otros sistemas. Esto implica que tanto datos, como códigos, documentos y metadatos deben encontrarse en <strong>formato abiertos y accesibles</strong>.</p></li>
 <li><p><strong>Reutilizables</strong>: Los datos deben ser utilizables en diversos contextos. Para ello se requiere:</p>
 <ul>
@@ -221,14 +220,15 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="productos" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="productos"><span class="header-section-number">2.2</span> Productos</h2>
-<section id="base-de-datos-integrada-de-proyectos-de-investigación" class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="base-de-datos-integrada-de-proyectos-de-investigación"><span class="header-section-number">2.2.1</span> Base de datos integrada de proyectos de investigación</h3>
-<p>En primer lugar, es necesaria la construcción de una base integrada a partir de las bases de SEPA-VID, ANID y la base de personal. La estructura de ésta es una base <em>long</em>, con los <strong>académicos FACSO</strong> como unidad de análisis. Para cada académico, se podrían obtener los siguientes datos:</p>
+<section id="base-de-datos" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="base-de-datos"><span class="header-section-number">2.2.1</span> Base de datos</h3>
+<p>El principal producto es una <strong>base integrada de datos de investigación</strong> construida a partir de las bases de SEPA-VID, ANID y la base de personal. La estructura de ésta es una base <em>long</em>, con los <strong>académicos FACSO</strong> como unidad de análisis. Para cada académico, se podrían obtener los siguientes datos:</p>
 <ul>
 <li>Información sobre el académico: Rol del académico en el proyecto, afiliación institucional, edad, género, jerarquía.</li>
 <li>Información sobre el proyecto: Identificador, Título, Concurso, Instrumento, Año de inicio y término, Investigador Responsable, monto adjudicado, palabras claves.</li>
 <li>Información sobre la trayectoria académica del académicos: Incluyendo años de jerarquizaciones y jerarquía en el momento de adjudicarse el proyecto.</li>
 </ul>
+<p>Además, se propone construir bases auxiliares, cruzables de manera sencilla con la base principal. Estas bases incluyen.: información sobre académicos que se retiraron o abandonaron la Facultad; colaboración institucional; colaboración con académicos externos.</p>
 <p><strong>Aplicación Principios FAIR</strong></p>
 <table class="caption-top table">
 <colgroup>
@@ -248,33 +248,28 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 <tr class="even">
 <td>Accesibles</td>
-<td>Considerando que la base contendrá información sensible sobre los investigadores y sus trayectorias académicas, <strong>la base se mantendrá inicialmente en un repositorio privado</strong>. Con el tiempo, se deberán acordar protocolos de acceso y uso.</td>
+<td>Considerando que la base contendrá información sensible sobre los investigadores y sus trayectorias académicas, <strong>las bases se mantendrá inicialmente en un repositorio privado</strong>. Con el tiempo, se deberán acordar protocolos de acceso y uso.</td>
 </tr>
 <tr class="odd">
 <td>Interoperables</td>
-<td>La base de datos se almacenará en <strong>formato valores separado por comas (.csv), con codificación UTF-8 y encabezados claros</strong>.</td>
+<td>Las bases de datos se almacenará en <strong>formato valores separado por comas (.csv), con codificación UTF-8 y encabezados claros</strong>.</td>
 </tr>
 <tr class="even">
 <td>Reutilizable</td>
-<td><p>La base de datos vendrá acompañada de su <strong>libro de códigos</strong>.</p>
-<p>El control de versiones de la base de datos se realizará mediante <strong>Git</strong>. Las actualizaciones se llevaran a cabo periódicamente mediante pull request, los cuales serán revisados y aprobados por el equipo DIP antes de ser fusionados con la rama principal.</p></td>
+<td><p>Las bases de datos vendrá acompañada de su <strong>libro de códigos</strong>.</p>
+<p>El control de versiones de las bases de datos se realizará mediante <strong>Git</strong>. Las actualizaciones se llevaran a cabo periódicamente mediante pull request, los cuales serán revisados y aprobados por el equipo DIP antes de ser fusionados con la rama principal.</p></td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="base-de-datos-auxiliares" class="level3" data-number="2.2.2">
-<h3 data-number="2.2.2" class="anchored" data-anchor-id="base-de-datos-auxiliares"><span class="header-section-number">2.2.2</span> Base de datos auxiliares</h3>
-<p>En segundo lugar, se propone construir bases auxiliares, cruzables de manera sencilla con la base principal. Estas bases incluyen.: información sobre académicos que se retiraron o abandonaron la Facultad; colaboración institucional; colaboración con académicos externos.</p>
-<p>La aplicación de los principios FAIR se realizará de la misma forma que con la base principal.</p>
-</section>
-<section id="visualización" class="level3" data-number="2.2.3">
-<h3 data-number="2.2.3" class="anchored" data-anchor-id="visualización"><span class="header-section-number">2.2.3</span> Visualización</h3>
+<section id="visualización" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="visualización"><span class="header-section-number">2.2.2</span> Visualización</h3>
 <p>Se implementará un <em>dashboard</em> para la visualización pública de datos sintéticos de investigación en la Facultad. El dashboard tendría distintas pestañas poniendo diversos enfasis en las necesidades identificadas para las diversas unidades:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 9%">
-<col style="width: 54%">
-<col style="width: 35%">
+<col style="width: 10%">
+<col style="width: 60%">
+<col style="width: 27%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -322,9 +317,10 @@ ul.task-list li input[type="checkbox"] {
 </tbody>
 </table>
 </section>
-<section id="documentación" class="level3" data-number="2.2.4">
-<h3 data-number="2.2.4" class="anchored" data-anchor-id="documentación"><span class="header-section-number">2.2.4</span> Documentación</h3>
+<section id="documentación" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="documentación"><span class="header-section-number">2.2.3</span> Documentación</h3>
 <p>El repositorio de las bases debe incluir documentación clara sobre la construcción de las bases de datos y el visualizador, incluyendo libros de códigos y reportes técnicos.</p>
+<p>La documentación se mantendrá en formatos interoperables. De tal manera, se redactará en lenguaje Markdown y se generará en formato HTML, lo que garantizará su visualización adecuadas en múltiples plataformas.</p>
 
 
 </section>

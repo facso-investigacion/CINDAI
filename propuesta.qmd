@@ -6,7 +6,7 @@ La propuesta se basa en la aplicación de los **principios FAIR** (*Findable, Ac
 
 1.  **Encontrables**: Los datos y metadatos deben ser fácilmente localizables por personas y sistemas, lo que se logran principalmente a través de **identificadores únicos y persistentes**.
 
-2.  **Accesibles** Datos y metadatos deben ser **accesibles de manera abierta y transparente**. En caso de que se consdera necesario mantener la privacidad parcial o total de los datos, se debe porporcionar una descripción clara sobre las razones y condiciones para su acceso.
+2.  **Accesibles:** Datos y metadatos deben ser **accesibles de manera abierta y transparente**. En caso de que se consdera necesario mantener la privacidad parcial o total de los datos, se debe porporcionar una descripción clara sobre las razones y condiciones para su acceso.
 
 3.  **Interoperables**: Los datos deben poder integrarse fácilmente con otros sistemas. Esto implica que tanto datos, como códigos, documentos y metadatos deben encontrarse en **formato abiertos y accesibles**.
 
@@ -22,51 +22,56 @@ De tal manera, esta propuesta tiene como objetivo desarrollar un sistema local e
 
 ## Productos
 
-### Base de datos integrada de proyectos de investigación
+### Base de datos
 
-En primer lugar, es necesaria la construcción de una base integrada a partir de las bases de SEPA-VID, ANID y la base de personal. La estructura de ésta es una base *long*, con los **académicos FACSO** como unidad de análisis. Para cada académico, se podrían obtener los siguientes datos:
+El principal producto es una **base integrada de datos de investigación** construida a partir de las bases de SEPA-VID, ANID y la base de personal. La estructura de ésta es una base *long*, con los **académicos FACSO** como unidad de análisis. Para cada académico, se podrían obtener los siguientes datos:
 
 -   Información sobre el académico: Rol del académico en el proyecto, afiliación institucional, edad, género, jerarquía.
 -   Información sobre el proyecto: Identificador, Título, Concurso, Instrumento, Año de inicio y término, Investigador Responsable, monto adjudicado, palabras claves.
 -   Información sobre la trayectoria académica del académicos: Incluyendo años de jerarquizaciones y jerarquía en el momento de adjudicarse el proyecto.
 
+Además, se propone construir bases auxiliares, cruzables de manera sencilla con la base principal. Estas bases incluyen.: información sobre académicos que se retiraron o abandonaron la Facultad; colaboración institucional; colaboración con académicos externos.
+
 **Aplicación Principios FAIR**
 
-+----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Principio      | Aplicación                                                                                                                                                                                                                                                       |
-+================+==================================================================================================================================================================================================================================================================+
-| Encontrables   | Los datos contarán con un **identificador único** tanto para **proyectos** como para **investigadores**                                                                                                                                                          |
-+----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Accesibles     | Considerando que la base contendrá información sensible sobre los investigadores y sus trayectorias académicas, **la base se mantendrá inicialmente en un repositorio privado**. Con el tiempo, se deberán acordar protocolos de acceso y uso.                   |
-+----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Interoperables | La base de datos se almacenará en **formato valores separado por comas (.csv), con codificación UTF-8 y encabezados claros**.                                                                                                                                    |
-+----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Reutilizable   | La base de datos vendrá acompañada de su **libro de códigos**.                                                                                                                                                                                                   |
-|                |                                                                                                                                                                                                                                                                  |
-|                | El control de versiones de la base de datos se realizará mediante **Git**. Las actualizaciones se llevaran a cabo periódicamente mediante pull request, los cuales serán revisados y aprobados por el equipo DIP antes de ser fusionados con la rama principal.  |
-+----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-
-### Base de datos auxiliares
-
-En segundo lugar, se propone construir bases auxiliares, cruzables de manera sencilla con la base principal. Estas bases incluyen.: información sobre académicos que se retiraron o abandonaron la Facultad; colaboración institucional; colaboración con académicos externos. 
-
-La aplicación de los principios FAIR se realizará de la misma forma que con la base principal. 
++----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Principio      | Aplicación                                                                                                                                                                                                                                                        |
++================+===================================================================================================================================================================================================================================================================+
+| Encontrables   | Los datos contarán con un **identificador único** tanto para **proyectos** como para **investigadores**                                                                                                                                                           |
++----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Accesibles     | Considerando que la base contendrá información sensible sobre los investigadores y sus trayectorias académicas, **las bases se mantendrá inicialmente en un repositorio privado**. Con el tiempo, se deberán acordar protocolos de acceso y uso.                  |
++----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Interoperables | Las bases de datos se almacenará en **formato valores separado por comas (.csv), con codificación UTF-8 y encabezados claros**.                                                                                                                                   |
++----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Reutilizable   | Las bases de datos vendrá acompañada de su **libro de códigos**.                                                                                                                                                                                                  |
+|                |                                                                                                                                                                                                                                                                   |
+|                | El control de versiones de las bases de datos se realizará mediante **Git**. Las actualizaciones se llevaran a cabo periódicamente mediante pull request, los cuales serán revisados y aprobados por el equipo DIP antes de ser fusionados con la rama principal. |
++----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 ### Visualización
 
 Se implementará un *dashboard* para la visualización pública de datos sintéticos de investigación en la Facultad. El dashboard tendría distintas pestañas poniendo diversos enfasis en las necesidades identificadas para las diversas unidades:
 
-| Dimensión                | Descripción                                                                                                                                   | Stakeholder                                                                                 |
-|--------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
-| Información general      | Evolución de número y tasa de adjudicación de proyectos de investigación de la Facultad.                                                    | Equipo directivo; Dirección de Investigación                                               |
-| Progresión Académica     | Evolución de número y tasa de adjudicación por jerarquía académica. Diferencias según resultados en los procesos de jerarquización.         | Dirección Académica; Comisión de Evaluación Académica                                      |
-| Postgrado                | Proyectos adjudicados por académicos de los programas de la Facultad. Cantidad de académicos por claustro con al menos 1 proyecto adjudicado (últimos 5 años, criterio CNA). | Dirección de Postgrado; Programas de Postgrado                                              |
-| Género                   | Cantidad de proyectos adjudicados que tratan temas sobre género. Proyectos con Investigadoras Responsables mujeres en la Facultad.           | Dirección de Género                                                                         |
-| Redes e Internacionalización | Redes de colaboración con académicos e instituciones internacionales y nacionales. Proyectos internacionales adjudicados.              | Dirección de Relaciones Internacionales; Unidad de Innovación y Transferencia              |
-| Innovación               | Tasas de adjudicación de proyectos de innovación y desarrollo.                                                                               | Unidad de Innovación y Transferencia                                                       |
-| Líneas de Investigación  | Nube y redes de palabras claves en proyectos adjudicados en la Facultad.                                                                     | Unidad de Educación Continua; Estudiantes                                                  |
-
++------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+
+| Dimensión                    | Descripción                                                                                                                                                                  | Stakeholder                                                                   |
++==============================+==============================================================================================================================================================================+===============================================================================+
+| Información general          | Evolución de número y tasa de adjudicación de proyectos de investigación de la Facultad.                                                                                     | Equipo directivo; Dirección de Investigación                                  |
++------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+
+| Progresión Académica         | Evolución de número y tasa de adjudicación por jerarquía académica. Diferencias según resultados en los procesos de jerarquización.                                          | Dirección Académica; Comisión de Evaluación Académica                         |
++------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+
+| Postgrado                    | Proyectos adjudicados por académicos de los programas de la Facultad. Cantidad de académicos por claustro con al menos 1 proyecto adjudicado (últimos 5 años, criterio CNA). | Dirección de Postgrado; Programas de Postgrado                                |
++------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+
+| Género                       | Cantidad de proyectos adjudicados que tratan temas sobre género. Proyectos con Investigadoras Responsables mujeres en la Facultad.                                           | Dirección de Género                                                           |
++------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+
+| Redes e Internacionalización | Redes de colaboración con académicos e instituciones internacionales y nacionales. Proyectos internacionales adjudicados.                                                    | Dirección de Relaciones Internacionales; Unidad de Innovación y Transferencia |
++------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+
+| Innovación                   | Tasas de adjudicación de proyectos de innovación y desarrollo.                                                                                                               | Unidad de Innovación y Transferencia                                          |
++------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+
+| Líneas de Investigación      | Nube y redes de palabras claves en proyectos adjudicados en la Facultad.                                                                                                     | Unidad de Educación Continua; Estudiantes                                     |
++------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+
 
 ### Documentación
 
 El repositorio de las bases debe incluir documentación clara sobre la construcción de las bases de datos y el visualizador, incluyendo libros de códigos y reportes técnicos.
+
+La documentación se mantendrá en formatos interoperables. De tal manera, se redactará en lenguaje Markdown y se generará en formato HTML, lo que garantizará su visualización adecuadas en múltiples plataformas.
